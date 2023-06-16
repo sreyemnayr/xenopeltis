@@ -1393,143 +1393,11 @@ def create(colors=64, fn="Test.png"):
     image.alpha_composite(Image.fromarray(bg, mode="RGBA"))
     print(f"Saving {fn}")
     image.save(fn)
-%save create 134
-%save session ~0/
-cm.colors
-cm.colors()
-cm.colorbar_extend
-cm.with_extremes()
-cm.N
-cm = palettable.cmocean.sequential.Thermal_20.mpl_colormap
-cm.N
-cm.colors
-tumblrs = os.listdir("palettes/moviesincolor/gallery-dl/tumblr/moviesincolor/")
-import json
-import requests
-def iframely_url(url):
-    sections = url.split("_")
-    uid = sections[2]
-    return f"https://iframely.com/api/try?url=https://moviesincolor.com/post/{uid}"
-iframely_url("tumblr_moviesincolor_47879985218_01.jpg")
-r = requests.get(iframely_url("tumblr_moviesincolor_47879985218_01.jpg"))
-r
-r.json()
-r.json().title
-r.json()['title']
+
+
+
 done = []
-for img in tumblrs:
-    r = requests.get(iframely_url(img))
-    with open(f"palettes/moviesincolor/json/{img}".replace(".jpg",".json"), "w") as f:
-        json.dump(r.json(), f, indent=2)
-    done.append(img)
-r.status_code
-import time
-done = []
-matches = {}
-for img in tumblrs:
-    if img not in done:
-        r = requests.get(iframely_url(img))
-        if r.status_code == 200:
-            j = r.json()
-            matches[img] = j.get("title", j.get("url", "unknown"))
-            with open(f"palettes/moviesincolor/json/{img}".replace(".jpg",".json"), "w") as f:
-                json.dump(j, f, indent=2)
-            done.append(img)
-        else:
-            print("sleeping")
-            time.sleep(5)
-done = []
-matches = {}
-for img in tumblrs:
-    if img not in done:
-        r = requests.get(iframely_url(img))
-        if r.status_code == 200:
-            j = r.json()
-            if not j.get("error", False):
-                matches[img] = j.get("title", j.get("url", "unknown"))
-                with open(f"palettes/moviesincolor/json/{img}".replace(".jpg",".json"), "w") as f:
-                    json.dump(j, f, indent=2)
-                done.append(img)
-            else:
-                print("sleeping")
-                time.sleep(5)
-#done = []
-matches = {}
-for img in tumblrs:
-    if img not in done:
-        print(img)
-        time.sleep(1)
-        r = requests.get(iframely_url(img))
-        if r.status_code == 200:
-            j = r.json()
-            if not j.get("error", False):
-                matches[img] = j.get("title", j.get("url", "unknown"))
-                with open(f"palettes/moviesincolor/json/{img}".replace(".jpg",".json"), "w") as f:
-                    json.dump(j, f, indent=2)
-                done.append(img)
-            else:
-                print("sleeping 5")
-                time.sleep(5)
-len(matches)
-with open("palettes/moviesincolor/matches.json", "w") as f:
-    json.dump(matches, f, indent=2)
-matches["tumblr_moviesincolor_145269683743_01.jpg"]
-iframely_url("tumblr_moviesincolor_145269683743_01.jpg")
-iframely_url("tumblr_moviesincolor_98570681908_01.jpg")
-iframely_url("tumblr_moviesincolor_91215621233_01.png")
-with open("palettes/moviesincolor/matches.json", "r") as f:
-    new_matches = json.load(f)
-new_matches("tumblr_moviesincolor_95924181593_01.jpg")
-new_matches.get"tumblr_moviesincolor_95924181593_01.jpg")
-new_matches.get("tumblr_moviesincolor_95924181593_01.jpg")
-new_matches
-def mic_url(url):
-    sections = url.split("_")
-    uid = sections[2]
-    return f"https://moviesincolor.com/post/{uid}"
-palettes = []
-for fn, movie in new_matches.items():
-    palettes.append({"img": fn, "source": "Movies in Color", "source_url": mic_url(fn), "inspiration": movie})
-from PIL import Image, ImageOps, ImageChops, ImageStat
-pwd
-cd palettes/
-(875,528) == (875,528)
-set([(875,528), (875,528)])
-hw = set()
-for p in palettes:
-    img = Image.open(f"img/{p['img']}")
-    p['img_obj'] = img.copy()
-    hw.add(img.size)
-hw
-len(palettes)
-len(new_matches)
-len(matches)
-from collections import Counter
-len(tumblrs)
-len(done)
-tumblrs[0]
-done = []
-done = [m for m in matches.keys()]
-len(done)
-#done = []
-matches = {}
-for img in tumblrs:
-    if img not in done:
-        print(img)
-        time.sleep(1)
-        r = requests.get(iframely_url(img))
-        if r.status_code == 200:
-            j = r.json()
-            if not j.get("error", False):
-                matches[img] = j.get("title", j.get("url", "unknown"))
-                with open(f"palettes/moviesincolor/json/{img}".replace(".jpg",".json"), "w") as f:
-                    json.dump(j, f, indent=2)
-                done.append(img)
-            else:
-                print("sleeping 5")
-                time.sleep(5)
-#done = []
-matches = {}
+
 for img in tumblrs:
     if img not in done:
         print(img)
@@ -1545,335 +1413,42 @@ for img in tumblrs:
             else:
                 print("sleeping 5")
                 time.sleep(5)
-with open("palettes/moviesincolor/more_matches.json", "w") as f:
-    json.dump(matches, f, indent=2)
-with open("moviesincolor/more_matches.json", "w") as f:
-    
-    json.dump(matches, f, indent=2)
-more_matches = {
-  "tumblr_moviesincolor_59805636610_01.jpg": "Small Time Crooks (2000)",
-  "tumblr_moviesincolor_79685885824_01.jpg": "Where the Wild Things Are (2009)",
-  "tumblr_moviesincolor_98982294618_01.jpg": "Guts - The Walking Dead: Season 1, Episode 2 (2010)",
-  "tumblr_moviesincolor_56531835074_01.jpg": "Be Kind Rewind (2008)",
-  "tumblr_moviesincolor_92102417308_01.jpg": "Sin City (2005)",
-  "tumblr_moviesincolor_87745814103_01.jpg": "Dirty Rotten Scoundrels (1988)",
-  "tumblr_moviesincolor_49702395910_01.jpg": "Delicatessen (1991)",
-  "tumblr_moviesincolor_61513276335_01.jpg": "Blazing Saddles (1974)",
-  "tumblr_moviesincolor_58073313789_01.jpg": "Super 8 (2011)",
-  "tumblr_moviesincolor_72806846464_01.jpg": "The New World (2005)",
-  "tumblr_moviesincolor_53772008365_01.jpg": "The Skin I Live In (2011)",
-  "tumblr_moviesincolor_66696589440_01.jpg": "Weird Science (1985)",
-  "tumblr_moviesincolor_55100022448_01.jpg": "Hellboy (2004)",
-  "tumblr_moviesincolor_56160342959_01.jpg": "Mulholland Dr. (2001)",
-  "tumblr_moviesincolor_58449654032_01.jpg": "Alice in Wonderland (2010)",
-  "tumblr_moviesincolor_60299094620_01.jpg": "Moulin Rouge (2001)",
-  "tumblr_moviesincolor_51816064160_01.jpg": "Inception (2010)",
-  "tumblr_moviesincolor_66795356883_01.jpg": "Eastern Promises (2007)",
-  "tumblr_moviesincolor_59504560331_01.jpg": "Annie Hall (1977)",
-  "tumblr_moviesincolor_93063666183_01.jpg": "RocknRolla (2008)",
-  "tumblr_moviesincolor_93710138108_01.jpg": "Sherlock Holmes: A Game of Shadows (2011)",
-  "tumblr_moviesincolor_80185061722_01.jpg": "Mean Girls (2004)"
-}
-for fn, movie in more_matches.items():
-    palettes.append({"img": fn, "source": "Movies in Color", "source_url": mic_url(fn), "inspiration": movie})
-len(palettes)
-hw = set()
-for p in palettes:
-    if not p.get('img_obj', None):
-        img = Image.open(f"img/{p['img']}")
-        p['img_obj'] = img.copy()
-        hw.add(img.size)
-hw
-for p in palettes:
-    hw.add(p['img_obj'].size)
-hw
+
+with open("moviesincolor/matches.json", "r") as f:
+    matches = json.load(f)
+
+palettes = []
 hws = []
-for p in palettes:
-    hws.append(p['img_obj'].size)
-len(hws)
-Counter(hws)
-lmd_y = 414
-x = 37
-gs_y = 488
-def get_palette(img):
-    upper = []
-    lower = []
-    for i in range(1,24):
-        upper.append(img.getpixel((lmd_y, i*37)))
-        lower.append(img.getpixel((gs_y, i*37)))
-    return (upper[0:6], upper[8:14], upper[16:22], lower[1:22])
-get_palette(palettes[0]['img_obj'])
-def get_palette(img):
-    upper = []
-    lower = []
-    for i in range(1,23):
-        upper.append(img.getpixel((lmd_y, i*37)))
-        lower.append(img.getpixel((gs_y, i*37)))
-    return (upper[0:6], upper[8:14], upper[16:22], lower[1:22])
-get_palette(palettes[0]['img_obj'])
-def get_palette(img):
-    upper = []
-    lower = []
-    for i in range(1,24):
-        upper.append(img.getpixel((i*37, lmd_y)))
-        lower.append(img.getpixel((i*37, gs_y)))
-    return (upper[0:6], upper[8:14], upper[16:22], lower[1:22])
-get_palette(palettes[0]['img_obj'])
-p = get_palette(palettes[0]['img_obj'])
-len(p[3])
-palettes[0]
-def get_palette(img):
-    upper = []
-    lower = []
-    for i in range(1,24):
-        upper.append(img.getpixel((i*36, lmd_y)))
-        lower.append(img.getpixel((i*36, gs_y)))
-    return (upper[0:6], upper[8:14], upper[16:22], lower[1:22])
-p = get_palette(palettes[0]['img_obj'])
-p
-#for p in palettes:
-#    if p['size'] = hw
-hw
-for p in palettes:
-    if p['size'] == (1280, 772):
-        print(p)
-for p in palettes:
-    if p['img_obj'].size == (1280, 772):
-        print(p)
-hw
-palettes[0]
-lmd_y
-gs_y
-def get_palette(img):
-    upper = []
-    lower = []
-    if img.size == (1280, 772):
-        upper_y = 608
-        lower_y = 720
-        x = 54
-    else:
-        upper_y = 414
-        lower_y = 488
-        x = 36
-    for i in range(1,24):
-        upper.append(img.getpixel((i*x, upper_y)))
-        lower.append(img.getpixel((i*x, lower_y)))
-    return (upper[0:6], upper[8:14], upper[16:22], lower[1:22])
-for p in palettes:
-    print(p['inspiration'])
-    pal = get_palette(p['img_obj'])
-    p['palettes'] = {"light": pal[0], "medium": pal[1], "dark": pal[2], "full": pal[3]}
-palettes[0]
-def get_palette(img):
-    upper = []
-    lower = []
-    if img.size == (1280, 772):
-        upper_y = 608
-        lower_y = 720
-        x = 54
-    else:
-        upper_y = 414
-        lower_y = 488
-        x = 36
-    for i in range(1,24):
-        upper_pixel = img.getpixel((i*x, upper_y))
-        upper.append(upper_pixel)
-        if(upper_pixel == (255, 255, 255)):
-            print(img['img'])
-        lower_pixel = img.getpixel((i*x, lower_y))
-        lower.append(lower_pixel)
-        if(lower_pixel == (255,255,255)):
-            print(img['img'])
-        
-    return (upper[0:6], upper[8:14], upper[16:22], lower[1:22])
-for p in palettes:
-    #print(p['inspiration'])
-    pal = get_palette(p['img_obj'])
-    p['palettes'] = {"light": pal[0], "medium": pal[1], "dark": pal[2], "full": pal[3]}
-def get_palette(img):
-    upper = []
-    lower = []
-    if img.size == (1280, 772):
-        upper_y = 608
-        lower_y = 720
-        x = 54
-    else:
-        upper_y = 414
-        lower_y = 488
-        x = 36
-    for i in range(1,24):
-        upper_pixel = img.getpixel((i*x, upper_y))
-        upper.append(upper_pixel)
-        if(upper_pixel == (255, 255, 255)):
-            print("DANGER")
-        lower_pixel = img.getpixel((i*x, lower_y))
-        lower.append(lower_pixel)
-        if(lower_pixel == (255,255,255)):
-            print("DANGER")
-        
-    return (upper[0:6], upper[8:14], upper[16:22], lower[1:22])
-for p in palettes:
-    print(p['img'])
-    pal = get_palette(p['img_obj'])
-    p['palettes'] = {"light": pal[0], "medium": pal[1], "dark": pal[2], "full": pal[3]}
-def get_palette(img):
-    upper = []
-    lower = []
-    if img.size == (1280, 772):
-        upper_y = 608
-        lower_y = 720
-        x = 54
-    else:
-        upper_y = 414
-        lower_y = 488
-        x = 36
-    for i in range(1,24):
-        upper_pixel = img.getpixel((i*x, upper_y))
-        upper.append(upper_pixel)
-        lower_pixel = img.getpixel((i*x, lower_y))
-        lower.append(lower_pixel)
-        
-    return (upper[0:6], upper[8:14], upper[16:22], lower[1:22])
-for p in palettes:
-    pal = get_palette(p['img_obj'])
-    p['palettes'] = {"light": pal[0], "medium": pal[1], "dark": pal[2], "full": pal[3]}
-    for pp in pal:
-        if (255, 255, 255) in pp:
-            print(p['img'])
-for i, p in enumerate(palettes):
-    pal = get_palette(p['img_obj'])
-    p['palettes'] = {"light": pal[0], "medium": pal[1], "dark": pal[2], "full": pal[3]}
-    for pp in pal:
-        if (255, 255, 255) in pp:
-            print(p['img'])
-            print(i)
-palettes[335]
-p = palettes[335]
-p['palettes']['full'] = [pp for pp in p['palettes']['full'] if pp != (255,255,255)]
-palettes[335]
-import pickle
-with open("moviesincolor.pkl", "wb") as f:
-    pickle.dump(palettes, f)
-from PIL import ImageDraw
-def show_key_colors(colorList):
-    '''
-    Make a long rectangle, composed of the colors
-    detailed in colorList, a list of (R, G, B) tuples
-    '''
-    n = len(colorList)
-
-    im = Image.new('RGBA', (50*n, 50))
-    draw = ImageDraw.Draw(im)
-
-    for idx, color in enumerate(colorList):
-        color = tuple([int(x) for x in color])
-        print(color)
-        draw.rectangle([(50*idx, 0), (50*(idx+1), 50*(idx+1))],
-                       fill=tuple(color))
-
-    return im
 titles = []
-titles.count("Ryan")
-titles = ["Ryan"]
-titles.count("Ryan")
-titles = []
-for p in palettes:
-    
-    ct = titles.count(p['inspiration'])
-    titles.append(p['inspiration'])
-    p['title'] = p['inspiration']
+
+for fn, movie in matches.items():
+
+    ct = titles.count(movie)
+    titles.append(movie)
+    title = movie
     if ct > 0:
-        p['title'] = f"{p['title']} #{ct}"
-for p in palettes:
-    for name, colors in p['palettes']:
-        pal_img = show_key_colors(colors)
-        pal_img.save(f"previews/{p['source']}_{p['title']}_{name}.jpg")
-for p in palettes:
-    for name, colors in p['palettes'].items():
-        pal_img = show_key_colors(colors)
-        pal_img.save(f"previews/{p['source']}_{p['title']}_{name}.jpg")
-colors
-def show_key_colors(colorList):
-    '''
-    Make a long rectangle, composed of the colors
-    detailed in colorList, a list of (R, G, B) tuples
-    '''
-    n = len(colorList)
+        title = f"{title} #{ct}"
 
-    im = Image.new('RGB', (50*n, 50))
-    draw = ImageDraw.Draw(im)
+    img = Image.open(f"img/{fn}")
+    pal = get_palette(img)
+    img_palettes = {"light": pal[0], "medium": pal[1], "dark": pal[2], "full": [pp for pp in pal[3] if pp != (255,255,255)]}
+    for name, colors in img_palettes.items():
+        pal_img = show_key_colors(colors)
+        pal_img.save("previews/"+make_filename(f"Movies in Color_{title}_{name}")+".png")
+    
+    hws.append(img.size)
 
-    for idx, color in enumerate(colorList):
-        color = tuple([int(x) for x in color])
-        print(color)
-        draw.rectangle([(50*idx, 0), (50*(idx+1), 50*(idx+1))],
-                       fill=tuple(color))
+    palettes.append(
+        {"img": fn,
+         "title": title,
+         "source": "Movies in Color",
+         "source_url": mic_url(fn),
+         "inspiration": movie,
+         "img_obj": img.copy(),
+         "palettes": img_palettes,
 
-    return im
-for p in palettes:
-    for name, colors in p['palettes'].items():
-        pal_img = show_key_colors(colors)
-        pal_img.save(f"previews/{p['source']}_{p['title']}_{name}.jpg")
-palettes[0]
-for p in palettes:
-    for name, colors in p['palettes'].items():
-        pal_img = show_key_colors(colors)
-        pal_img.save(f"previews/{p['source']}_{p['title']}_{name}.png".replace(' ',''))
-os.walk()
-os.walk("./")
-done = []
-not done
-done = [1]
-not done
-readme = []
-for p in sorted(palettes, key=lambda x: x['title']):
-    readme.append(f"## {x['title']}")
-    for name, colors in p['palettes'].items():
-        #pal_img = show_key_colors(colors)
-        fn = f"previews/{p['source']}_{p['title']}_{name}.png".replace(' ','')
-        readme.append(f"### {name}")
-        readme.append(f"![{x['title']}]({fn})")
-    readme.append("---")
-readme = []
-for p in sorted(palettes, key=lambda x: x['title']):
-    readme.append(f"## {p['title']}")
-    for name, colors in p['palettes'].items():
-        #pal_img = show_key_colors(colors)
-        fn = f"previews/{p['source']}_{p['title']}_{name}.png".replace(' ','')
-        readme.append(f"### {name}")
-        readme.append(f"![{p['title']}]({fn})")
-    readme.append("---")
-len(readme)
-with open("moviesincolor.md", "w") as f:
-    f.write("\n".join(readme))
-import lzma
-test = lzma.open("/Users/ryan/Projects/stoics/stoa/palettes/cinema.palettes/2016-10-08_01-07-30_UTC.json.xz").read().decode("utf-8")
-test
-json.loads(test)
-def make_filename(filename):
-    keepcharacters = ('(',')','_')
-    return "".join(c for c in filename if c.isalnum() or c in keepcharacters).rstrip()
-for p in palettes:
-    for name, colors in p['palettes'].items():
-        pal_img = show_key_colors(colors)
-        pal_img.save(make_filename(f"previews/{p['source']}_{p['title']}_{name}")+".png")
-readme = []
-for p in sorted(palettes, key=lambda x: x['title']):
-    readme.append(f"## {p['title']}")
-    for name, colors in p['palettes'].items():
-        #pal_img = show_key_colors(colors)
-        fn = make_filename(f"previews/{p['source']}_{p['title']}_{name}")+".png"
-        readme.append(f"### {name}")
-        readme.append(f"![{p['title']}]({fn})")
-    readme.append("---")
-with open("moviesincolor.md", "w") as f:
-    f.write("\n".join(readme))
-with open("README.md", "w") as f:
-    f.write("\n".join(readme))
-for p in palettes:
-    for name, colors in p['palettes'].items():
-        pal_img = show_key_colors(colors)
-        pal_img.save("previews/"+make_filename(f"{p['source']}_{p['title']}_{name}")+".png")
+         })
+
 readme = []
 for p in sorted(palettes, key=lambda x: x['title']):
     readme.append(f"## {p['title']}")
@@ -1883,146 +1458,26 @@ for p in sorted(palettes, key=lambda x: x['title']):
         readme.append(f"### {name}")
         readme.append(f"![{p['title']}]({fn})")
     readme.append("---")
-with open("README.md", "w") as f:
-    f.write("\n".join(readme))
+
 with open("moviesincolor.md", "w") as f:
     f.write("\n".join(readme))
-def get_palette_cp(img):
-    upper = []
-    #lower = []
-    #if img.size == (1280, 772):
-    #    upper_y = 608
-    #    lower_y = 720
-    #    x = 54
-    #else:
-    y = 677
-    #    lower_y = 488
-    x = 100
-    for i in range(1,11):
-        pixel = img.getpixel((i*x, y))
-        upper.append(upper_pixel)
-        #lower_pixel = img.getpixel((i*x, lower_y))
-        #lower.append(lower_pixel)
-        
-    return upper
-cps = [fn for fn in os.listdir("palettes/moviesincolor/gallery-dl/tumblr/moviesincolor/") if ".jpg" in fn]
+
+
+# cinema.palettes
+
 cps = [fn for fn in os.listdir("cinema.palettes") if ".jpg" in fn]
-len(cps)
-#done = []
-matches = {}
-for img in cps:
-    if img not in done:
-        print(img)
-        
-        #time.sleep(1)
-        #r = requests.get(iframely_url(img))
-        #if r.status_code == 200:
-        #    j = r.json()
-        #    if not j.get("error", False):
-        #        matches[img] = j.get("title", j.get("url", "unknown"))
-        with open(f"cinema.palettes/{img}".replace(".jpg",".txt"), "r") as f:
-            txt = f.read()
-            matches[img] = txt.split('.')[0]
-            #        json.dump(j, f, indent=2)
-            done.append(img)
-            #else:
-            #    print("sleeping 5")
-            #    time.sleep(5)
-len(done)
-len(matches)
-#done = []
-matches = {}
-for img in cps:
-    if img not in done:
-        #print(img)
-        
-        #time.sleep(1)
-        #r = requests.get(iframely_url(img))
-        #if r.status_code == 200:
-        #    j = r.json()
-        #    if not j.get("error", False):
-        #        matches[img] = j.get("title", j.get("url", "unknown"))
-        try:
-            with open(f"cinema.palettes/{img}".replace(".jpg",".txt"), "r") as f:
-                txt = f.read()
-                matches[img] = txt.split('.')[0]
-                #        json.dump(j, f, indent=2)
-                done.append(img)
-        except:
-            print(f"Problem with {img}")
-            #else:
-            #    print("sleeping 5")
-            #    time.sleep(5)
-len(matches)
 done = []
 matches = {}
 for img in cps:
     if img not in done:
-        #print(img)
-        
-        #time.sleep(1)
-        #r = requests.get(iframely_url(img))
-        #if r.status_code == 200:
-        #    j = r.json()
-        #    if not j.get("error", False):
-        #        matches[img] = j.get("title", j.get("url", "unknown"))
         try:
             with open(f"cinema.palettes/{img}".replace(".jpg",".txt"), "r") as f:
                 txt = f.read()
                 matches[img] = txt.split('.')[0]
-                #        json.dump(j, f, indent=2)
                 done.append(img)
         except:
             print(f"Problem with {img}")
-            #else:
-            #    print("sleeping 5")
-            #    time.sleep(5)
-len(matches)
-len(done)
-matches
-#cinemapalettes = []
-#for fn, movie in new_matches.items():
-#    cinemapalettes.append({"img": fn, "source": "cinema.palettes", "source_url": mic_url(fn), "inspiration": movie})
-test = lzma.open("/Users/ryan/Projects/stoics/stoa/palettes/cinema.palettes/2016-10-08_01-07-30_UTC.json.xz").read().decode("utf-8")
-test
-test.keys()
-json.loads(test)
-j = json.loads(lzma.open(fn.replace(".jpg",".json.xz")).read().decode("utf-8"))
-j = json.loads(lzma.open(fn.replace(".jpg",".json.xz")).read().decode("utf-8"))
-#j = json.loads(lzma.open(fn.replace(".jpg",".json.xz")).read().decode("utf-8"))
-    j = json.loads(lzma.open(fn.replace(".jpg",".json.xz")).read().decode("utf-8"))
-def get_instagram_url(fn): j = json.loads(lzma.open(fn.replace(".jpg",".json.xz")).read().decode("utf-8"))
-def get_instagram_url(fn):
-    j = json.loads(lzma.open(fn.replace(".jpg",".json.xz")).read().decode("utf-8"))
-    return f"https://instagram.com/p/{j.get('shortcode')}/"
-list(matches.keys())[0]
-get_instagram_url(f"cinema.palettes/2017-03-09_03-36-37_UTC.jpg")
-j
-fn = "cinema.palettes/2017-03-09_03-36-37_UTC.jpg"
-#def get_instagram_url(fn):
-j = json.loads(lzma.open(fn.replace(".jpg",".json.xz")).read().decode("utf-8"))
-#    return f"https://instagram.com/p/{j.get('shortcode')}/"
-j
-j.keys()
-j.get('node').keys()
-def get_instagram_url(fn):
-    j = json.loads(lzma.open(fn.replace(".jpg",".json.xz")).read().decode("utf-8")).get('node', {})
-    return f"https://instagram.com/p/{j.get('shortcode')}/"
-get_instagram_url(f"cinema.palettes/2017-03-09_03-36-37_UTC.jpg")
-cinemapalettes = []
-for fn, movie in matches.items():
-    if movie[-1] != ")":
-        print(fn, movie)
-    #cinemapalettes.append({"img": fn, "source": "cinema.palettes", "source_url": get_instagram_url(f"cinema.palettes/{fn}"), "inspiration": movie})
-cinemapalettes = []
-for fn, movie in matches.items():
-    if movie[-1] != ")":
-        if ")" in movie:
-            matches[fn] = movie.split(")")[0] + ")"
-        else:
-            print(fn, movie)
-    #cinemapalettes.append({"img": fn, "source": "cinema.palettes", "source_url": get_instagram_url(f"cinema.palettes/{fn}"), "inspiration": movie})
-matches["2016-11-14_09-40-52_UTC.jpg"]
+
 matches["2017-05-29_09-10-45_UTC.jpg"] = "The Man from U.N.C.L.E. (2015)"
 matches["2017-01-14_19-35-38_UTC.jpg"] = "Supernatural (TV Series)"
 matches["2017-01-14_19-58-28_UTC.jpg"] = "True Blood (TV Series)"
@@ -2030,231 +1485,40 @@ matches["2017-01-14_20-01-52_UTC.jpg"] = "Vampire Diaries (TV Show)"
 matches["2021-01-23_02-59-01_UTC.jpg"] = "Bernie Game of Thrones (Meme)"
 matches["2021-01-23_03-00-07_UTC.jpg"] = "Sad Keanu and Bernie (Meme)"
 matches["2021-01-23_02-57-13_UTC.jpg"] = "Bernie Breakfast Club (Meme)"
+
 cinemapalettes = []
-for fn, movie in matches.items():
-    if movie[-1] != ")":
-        if ")" in movie:
-            matches[fn] = movie.split(")")[0] + ")"
-        else:
-            print(fn, movie)
-    #cinemapalettes.append({"img": fn, "source": "cinema.palettes", "source_url": get_instagram_url(f"cinema.palettes/{fn}"), "inspiration": movie})
-cinemapalettes = []
-for fn, movie in matches.items():
-    if movie[-1] != ")":
-        if ")" in movie:
-            matches[fn] = movie.split(")")[0] + ")"
-        else:
-            print(fn, movie)
-    cinemapalettes.append({"img": fn, "source": "cinema.palettes", "source_url": get_instagram_url(f"cinema.palettes/{fn}"), "inspiration": movie})
-hw = set()
-for p in cinemapalettes:
-    if not p.get('img_obj', None):
-        img = Image.open(f"cinema.palettes/{p['img']}")
-        p['img_obj'] = img.copy()
-        hw.add(img.size)
-hw
-for p in cinemapalettes:
-    hws.append(p['img_obj'].size)
-Counter(hws)
-hows = []
 hws = []
-for p in cinemapalettes:
-    hws.append(p['img_obj'].size)
-Counter(hws)
-def get_palette_cp(img):
-    upper = []
-    #lower = []
-    w, h = img.size
-    #if img.size == (1280, 772):
-    #    upper_y = 608
-    #    lower_y = 720
-    #    x = 54
-    #else:
-    
-    y = 677
-    #    lower_y = 488
-    x = 100
-    for i in range(1,11):
-        pixel = img.getpixel((i*x, y))
-        upper.append(upper_pixel)
-        #lower_pixel = img.getpixel((i*x, lower_y))
-        #lower.append(lower_pixel)
-        
-    return upper
-for p in cinemapalettes:
-    w, h = p['img_obj'].size
-    if h > 776:
-        print(p['img'], w)
-for p in cinemapalettes:
-    w, h = p['img_obj'].size
-    if h > 776:
-        print(p['img'], h)
-def get_palette_cp(img):
-    upper = []
-    offset = 0
-    ncolors = 10
-    #lower = []
-    w, h = img.size
-    y = h - 120
-    if h < 900:
-        x = 100
-    elif h < 1000:
-        offset = 0
-        x = 115
-        ncolors = 9
-    else:
-        offset = 50
-        x = 120
-        ncolors = 9
-    #if img.size == (1280, 772):
-    #    upper_y = 608
-    #    lower_y = 720
-    #    x = 54
-    #else:
-    #    lower_y = 488
-    for i in range(1,ncolors+1):
-        pixel = img.getpixel((offset+i*x, y))
-        upper.append(upper_pixel)
-        #lower_pixel = img.getpixel((i*x, lower_y))
-        #lower.append(lower_pixel)
-        
-    return upper
-for i, p in enumerate(cinemapalettes):
-    pal = get_palette_cp(p['img_obj'])
-    p['palettes'] = {"full": pal}
-    for pp in pal:
-        if (255, 255, 255) in pp:
-            print(p['img'])
-            print(i)
-def get_palette_cp(img):
-    upper = []
-    offset = 0
-    ncolors = 10
-    #lower = []
-    w, h = img.size
-    y = h - 120
-    if h < 900:
-        x = 100
-    elif h < 1000:
-        offset = 0
-        x = 115
-        ncolors = 9
-    else:
-        offset = 50
-        x = 120
-        ncolors = 9
-    #if img.size == (1280, 772):
-    #    upper_y = 608
-    #    lower_y = 720
-    #    x = 54
-    #else:
-    #    lower_y = 488
-    for i in range(1,ncolors+1):
-        pixel = img.getpixel((offset+i*x, y))
-        upper.append(pixel)
-        #lower_pixel = img.getpixel((i*x, lower_y))
-        #lower.append(lower_pixel)
-        
-    return upper
-for i, p in enumerate(cinemapalettes):
-    pal = get_palette_cp(p['img_obj'])
-    p['palettes'] = {"full": pal}
-    for pp in pal:
-        if (255, 255, 255) in pp:
-            print(p['img'])
-            print(i)
-def get_palette_cp(img):
-    try:
-        upper = []
-        offset = 0
-        ncolors = 10
-        #lower = []
-        w, h = img.size
-        y = h - 120
-        if h < 900:
-            x = 100
-        elif h < 1000:
-            offset = 0
-            x = 115
-            ncolors = 9
-        else:
-            offset = 50
-            x = 120
-            ncolors = 9
-    #if img.size == (1280, 772):
-    #    upper_y = 608
-    #    lower_y = 720
-    #    x = 54
-    #else:
-    #    lower_y = 488
-        for i in range(1,ncolors+1):
-            pixel = img.getpixel((offset+i*x, y))
-            upper.append(pixel)
-            #lower_pixel = img.getpixel((i*x, lower_y))
-            #lower.append(lower_pixel)
-    except:
-        print(f"Problem with {img}")
-        
-    return upper
-for i, p in enumerate(cinemapalettes):
-    pal = get_palette_cp(p['img_obj'])
-    p['palettes'] = {"full": pal}
-    for pp in pal:
-        if (255, 255, 255) in pp:
-            print(p['img'])
-            print(i)
-def get_palette_cp(img):
-    try:
-        upper = []
-        offset = 0
-        ncolors = 10
-        #lower = []
-        w, h = img.size
-        y = h - 120
-        if h < 900:
-            x = 100
-        elif h < 1000:
-            offset = 0
-            x = 115
-            ncolors = 9
-        else:
-            offset = -50
-            x = 120
-            ncolors = 9
-    #if img.size == (1280, 772):
-    #    upper_y = 608
-    #    lower_y = 720
-    #    x = 54
-    #else:
-    #    lower_y = 488
-        for i in range(1,ncolors+1):
-            pixel = img.getpixel((offset+i*x, y))
-            upper.append(pixel)
-            #lower_pixel = img.getpixel((i*x, lower_y))
-            #lower.append(lower_pixel)
-    except:
-        print(f"Problem with {img}")
-        
-    return upper
-for i, p in enumerate(cinemapalettes):
-    pal = get_palette_cp(p['img_obj'])
-    p['palettes'] = {"full": pal}
-    for pp in pal:
-        if (255, 255, 255) in pp:
-            print(p['img'])
-            print(i)
-for p in cinemapalettes:
-    
-    ct = titles.count(p['inspiration'])
-    titles.append(p['inspiration'])
-    p['title'] = p['inspiration']
+
+for fn, movie in matches.items():
+    ct = titles.count(movie)
+    titles.append(movie)
+    title = movie
+    pal = get_palette_cp(img)
+    pal_img = show_key_colors(pal)
+    pal_img.save("previews/"+make_filename(f"cinema.palettes_{title}_full")+".png")
+
     if ct > 0:
-        p['title'] = f"{p['title']} #{ct}"
-palettes[0]
-for p in cinemapalettes:
-    for name, colors in p['palettes'].items():
-        pal_img = show_key_colors(colors)
-        pal_img.save("previews/"+make_filename(f"{p['source']}_{p['title']}_{name}")+".png")
+        title = f"{title} #{ct}"
+
+    img = Image.open(f"cinema.palettes/{fn}")
+    hws.append(img.size)
+    if movie[-1] != ")":
+        if ")" in movie:
+            movie = movie.split(")")[0] + ")"
+        else:
+            print(fn, movie)
+    cinemapalettes.append({
+        "img": fn,
+        "source": "cinema.palettes",
+        "source_url": get_instagram_url(f"cinema.palettes/{fn}"),
+        "inspiration": movie,
+        "img_obj": img.copy(),
+        "title": title,
+        "palettes": {"full": pal}
+        })
+    
+
+
 readme = []
 for p in sorted(cinemapalettes, key=lambda x: x['title']):
     readme.append(f"## {p['title']}")
@@ -2264,15 +1528,125 @@ for p in sorted(cinemapalettes, key=lambda x: x['title']):
         readme.append(f"### {name}")
         readme.append(f"![{p['title']}]({fn})")
     readme.append("---")
+
 with open("cinemapalettes.md", "w") as f:
     f.write("\n".join(readme))
 hws = []
 #with open("cinemapalettes.md", "w") as f:
 #    f.write("\n".join(readme))
-get_instagram_url(f"filmandcolor/2018-09-12_22-41-40_UTC.jpg")
-process_folder()
-%save last_session ~1/
-%save last_session ~2/
-%save last_session ~3/
-%save last_session ~2/
-%save history -l 400
+
+
+# filmandcolor
+
+cps = [fn for fn in os.listdir("filmandcolor") if ".jpg" in fn]
+done = []
+matches = {}
+for img in cps:
+    if img not in done:
+        try:
+            with open(f"filmandcolor/{img}".replace(".jpg",".txt"), "r") as f:
+                txt = f.read()
+                matches[img] = txt.split('.')[0]
+                done.append(img)
+        except:
+            print(f"Problem with {img}")
+
+
+fcpalettes = []
+hws = []
+
+for fn, movie in matches.items():
+    ct = titles.count(movie)
+    titles.append(movie)
+    title = movie
+    pal = get_palette_fc(img)
+    pal_img = show_key_colors(pal)
+    pal_img.save("previews/"+make_filename(f"filmandcolor_{title}_full")+".png")
+
+    if ct > 0:
+        title = f"{title} #{ct}"
+
+    img = Image.open(f"filmandcolor/{fn}")
+    hws.append(img.size)
+    if movie[-1] != ")":
+        if ")" in movie:
+            movie = movie.split(")")[0] + ")"
+        else:
+            print(fn, movie)
+    fcpalettes.append({
+        "img": fn,
+        "source": "filmandcolor",
+        "source_url": get_instagram_url(f"filmandcolor/{fn}"),
+        "inspiration": movie,
+        "img_obj": img.copy(),
+        "title": title,
+        "palettes": {"full": pal}
+        })
+    
+
+
+readme = []
+for p in sorted(fcpalettes, key=lambda x: x['title']):
+    readme.append(f"## {p['title']}")
+    for name, colors in p['palettes'].items():
+        #pal_img = show_key_colors(colors)
+        fn = "previews/"+make_filename(f"{p['source']}_{p['title']}_{name}")+".png"
+        readme.append(f"### {name}")
+        readme.append(f"![{p['title']}]({fn})")
+    readme.append("---")
+
+with open("filmandcolor.md", "w") as f:
+    f.write("\n".join(readme))
+
+# palettemaniac
+
+done = []
+
+with open("palettemaniac/matches.json", "r") as f:
+    matches = json.load(f)
+
+
+pmpalettes = []
+hws = []
+
+pmfiles = [f.get('img') for f in pmpalettes]
+
+for fn, movie in matches.items():
+    if fn not in pmfiles:
+        ct = titles.count(movie)
+        titles.append(movie)
+        title = movie
+        pal = get_palette_pm(img)
+        pal_img = show_key_colors(pal)
+        pal_img.save("previews/"+make_filename(f"palettemaniac_{title}_full")+".png")
+
+        if ct > 0:
+            title = f"{title} #{ct}"
+
+        img = Image.open(f"palettemaniac/{fn}")
+        hws.append(img.size)
+
+        pmpalettes.append({
+            "img": fn,
+            "source": "palettemaniac",
+            "source_url": get_instagram_url(f"palettemaniac/{fn}"),
+            "inspiration": movie,
+            "img_obj": img.copy(),
+            "title": title,
+            "palettes": {"full": pal}
+            })
+    
+
+
+readme = []
+for p in sorted(pmpalettes, key=lambda x: x['title']):
+    readme.append(f"## {p['title']}")
+    for name, colors in p['palettes'].items():
+        #pal_img = show_key_colors(colors)
+        fn = "previews/"+make_filename(f"{p['source']}_{p['title']}_{name}")+".png"
+        readme.append(f"### {name}")
+        readme.append(f"![{p['title']}]({fn})")
+    readme.append("---")
+
+with open("palettemaniac.md", "w") as f:
+    f.write("\n".join(readme))
